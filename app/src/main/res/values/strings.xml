@@ -6,4 +6,9 @@
 
     <string name="add">+</string>
     <string name="delete">-</string>
+
+    <string name="title">Title: </string>
+    <string name="servings">Servings: </string>
+    <string name="ingredients">Ingredients: </string>
+    <string name="directions">Directions: </string>
 </resources>

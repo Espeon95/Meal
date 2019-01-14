@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".IngredientListActivity"></activity>
         <activity android:name=".MealListActivity"></activity>
+        <activity android:name="RecipeActivity"></activity>
     </application>
 
 </manifest>

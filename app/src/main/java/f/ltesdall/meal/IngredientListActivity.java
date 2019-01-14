@@ -24,9 +24,9 @@ public class IngredientListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle sis) {
         super.onCreate(sis);
-        setContentView(R.layout.ingredient_list);
+        setContentView(R.layout.list_view);
 
-        mIngredientsList = findViewById(R.id.ingredient_list);
+        mIngredientsList = findViewById(R.id.list_view);
 
         // Create the instance of database access class and open database connection
         DBAccess dbAccess = DBAccess.getInstance(this);

@@ -1,6 +1,7 @@
 package f.ltesdall.meal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -23,9 +24,9 @@ public class MealListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle sis) {
         super.onCreate(sis);
-        setContentView(R.layout.ingredient_list);
+        setContentView(R.layout.list_view);
 
-        mMealList = findViewById(R.id.ingredient_list);
+        mMealList = findViewById(R.id.list_view);
 
         // Create the instance of database access class and open database connection
         DBAccess dbMealAccess = DBAccess.getInstance(this);
@@ -40,7 +41,9 @@ public class MealListActivity extends AppCompatActivity {
         mMealList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + "is selected", Toast.LENGTH_SHORT).show();
+                Intent i = RecipeActivity.createActivity(MealListActivity.this,  mMeals.get(position).getName(), position);
+                startActivity(i);
+
             }
         });
     }
