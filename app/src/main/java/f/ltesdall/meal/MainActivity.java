@@ -14,6 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Button mIngredientsBtn;
+    private Button mMealsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, IngredientListActivity.class);
+                startActivity(i);
+            }
+        });
+
+        mMealsBtn = (Button) findViewById(R.id.mealsBtn);
+        mMealsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MealListActivity.class);
                 startActivity(i);
             }
         });

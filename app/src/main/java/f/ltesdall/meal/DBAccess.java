@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Collections;
 
 public class DBAccess {
     private SQLiteOpenHelper openHelper;
@@ -53,21 +55,36 @@ public class DBAccess {
         }
         c.close();
 
+        Collections.sort(list, new Comparator<Ingredient>() {
+            public int compare(Ingredient obj1, Ingredient obj2) {
+                // ## Ascending order
+                return obj1.getName().compareToIgnoreCase(obj2.getName()); // To compare string values
+            }
+        });
+
         return list;
     }
-    /*
-    public List<String> getIngredients() {
-        List<String> list = new ArrayList<>();
 
-        c = db.rawQuery("select * from Ingredients", null);
+    public List<Meal> getMeals() {
+        Meal m;
+        List<Meal> list = new ArrayList<>();
+
+        c = db.rawQuery("select * from Meals", null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            list.add(c.getString(0));
+            m = new Meal(c.getInt(0), c.getString(1));
+            list.add(m);
             c.moveToNext();
         }
         c.close();
 
+        Collections.sort(list, new Comparator<Meal>() {
+            public int compare(Meal obj1, Meal obj2) {
+                // ## Ascending order
+                return obj1.getName().compareToIgnoreCase(obj2.getName()); // To compare string values
+            }
+        });
+
         return list;
     }
-    */
 }
