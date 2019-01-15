@@ -109,23 +109,41 @@ public class DBAccess {
     // Queries the Meal Table and returns the result from the database
     public List<Meal> getMeals() {
         Meal m;
-        List<Meal> list = new ArrayList<>();
+        List<Meal> list    = new ArrayList<>();
+        List<Meal> entrees = new ArrayList<>();
+        List<Meal> sides   = new ArrayList<>();
 
         c = db.rawQuery("select * from Recipes", null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             m = new Meal(c.getInt(0), c.getString(1));
-            list.add(m);
+            if (c.getString(2).equalsIgnoreCase("Entree")) {
+                entrees.add(m);
+            }
+            else if (c.getString(2).equalsIgnoreCase("side")) {
+                sides.add(m);
+            }
+
             c.moveToNext();
         }
         c.close();
 
-        Collections.sort(list, new Comparator<Meal>() {
+        Collections.sort(entrees, new Comparator<Meal>() {
             public int compare(Meal obj1, Meal obj2) {
                 // ## Ascending order
                 return obj1.getName().compareToIgnoreCase(obj2.getName()); // To compare string values
             }
         });
+
+        Collections.sort(sides, new Comparator<Meal>() {
+            public int compare(Meal obj1, Meal obj2) {
+                // ## Ascending order
+                return obj1.getName().compareToIgnoreCase(obj2.getName()); // To compare string values
+            }
+        });
+
+        list.addAll(entrees);
+        list.addAll(sides);
 
         return list;
     }
