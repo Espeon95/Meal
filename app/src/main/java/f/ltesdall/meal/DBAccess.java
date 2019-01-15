@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -63,7 +62,7 @@ public class DBAccess {
         this.openHelper = new DBOpenHelper(context);
     }
 
-    // To return the single instance of the database
+    // Returns the single instance of the database
     public static DBAccess getInstance(Context context) {
         if (instance == null) {
             instance = new DBAccess(context);
@@ -71,19 +70,19 @@ public class DBAccess {
         return instance;
     }
 
-    // To open the database connection
+    // Opens the database connection
     public void open() {
         this.db = openHelper.getWritableDatabase();
     }
 
-    // To close the database connection
+    // Closes the database connection
     public void close() {
         if (db != null) {
             this.db.close();
         }
     }
 
-    // Queries the database and returns the result from the database
+    // Queries the Ingredient Table and returns the result from the database
     public List<Ingredient> getIngredients() {
         Ingredient i;
         List<Ingredient> list = new ArrayList<>();
@@ -107,6 +106,7 @@ public class DBAccess {
         return list;
     }
 
+    // Queries the Meal Table and returns the result from the database
     public List<Meal> getMeals() {
         Meal m;
         List<Meal> list = new ArrayList<>();
@@ -130,17 +130,15 @@ public class DBAccess {
         return list;
     }
 
-    public List<Recipe> getMeal(String recipe, int meal) {
+    // Queries a recipe from the Recipe table and returns the result from the database
+    public List<Recipe> getMeal(String recipeName, int mealID) {
         Recipe r;
-        int servings;
-        String ingredients;
-        String directions;
         List<Recipe> list = new ArrayList<>();
 
-        c = db.rawQuery("select * from Spaghetti", null);
+        c = db.rawQuery("select * from Recipes where Recipe_ID = ?", new String[] {mealID + ""});
         c.moveToFirst();
         while(!c.isAfterLast()) {
-            r = new Recipe(recipe, c.getInt(0), c.getString(1), c.getString(2));
+            r = new Recipe(recipeName, c.getInt(1), c.getString(2), c.getString(3));
             list.add(r);
             c.moveToNext();
         }

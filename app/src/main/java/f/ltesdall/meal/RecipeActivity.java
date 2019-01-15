@@ -11,9 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,10 +28,10 @@ public class RecipeActivity extends AppCompatActivity {
     private ListView mRecipes;
     private List<Recipe> mRecipe = new ArrayList<>();
 
-    public static Intent createActivity(Context context, String meal, int mealID) {
+    public static Intent createActivity(Context context, int mealID, String mealName) {
         Intent i = new Intent(context, RecipeActivity.class);
         i.putExtra("meal_id", mealID);
-        i.putExtra("meal_name", meal);
+        i.putExtra("meal_name", mealName);
         return i;
     }
 
@@ -107,9 +105,8 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public String parseData(String directions) {
-        String[] parsedDirections = directions.split(",[ ]*");
+        String[] parsedDirections = directions.split(",[ ]*"); // splits at the comma and eliminates spaces
         String   newDirections = "";
-
 
         for (int i = 0; i < parsedDirections.length; i++) {
             newDirections += parsedDirections[i] + "\n";

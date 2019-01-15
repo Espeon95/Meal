@@ -39,7 +39,7 @@ public class MealListActivity extends AppCompatActivity {
         mMealList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = RecipeActivity.createActivity(MealListActivity.this,  mMeals.get(position).getName(), position);
+                Intent i = RecipeActivity.createActivity(MealListActivity.this,  mMeals.get(position).getID(), mMeals.get(position).getName());
                 startActivity(i);
 
             }
