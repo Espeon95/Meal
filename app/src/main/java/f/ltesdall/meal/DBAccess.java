@@ -132,14 +132,18 @@ public class DBAccess {
 
     public List<Recipe> getMeal(String recipe, int meal) {
         Recipe r;
+        int servings;
+        String ingredients;
+        String directions;
         List<Recipe> list = new ArrayList<>();
-        c = db.rawQuery("select * from " + recipe, null);
+
+        c = db.rawQuery("select * from Spaghetti", null);
         c.moveToFirst();
-        //while(!c.isAfterLast()) {
+        while(!c.isAfterLast()) {
             r = new Recipe(recipe, c.getInt(0), c.getString(1), c.getString(2));
             list.add(r);
             c.moveToNext();
-       // }
+        }
         c.close();
 
         return list;

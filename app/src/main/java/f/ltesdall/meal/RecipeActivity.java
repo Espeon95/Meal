@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -43,7 +42,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         mRecipes = findViewById(R.id.list_view);
 
-        mMealID = getIntent().getIntExtra("meal_id", 0);
+        mMealID     = getIntent().getIntExtra("meal_id", 0);
         mRecipeName = getIntent().getStringExtra("meal_name");
 
         DBAccess dbAccess = DBAccess.getInstance(this);
@@ -57,7 +56,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public class Adapter extends BaseAdapter implements ListAdapter {
-        private List<Recipe> mList;
+        private List<Recipe>  mList = new ArrayList<>();
         private Context mContext;
 
         public Adapter(List<Recipe> recipe, Context context) {
@@ -92,14 +91,14 @@ public class RecipeActivity extends AppCompatActivity {
             mTitle       = v.findViewById(R.id.title_info);
             mTitle.setText(mList.get(position).getTitle());
 
-            mServings    = v.findViewById(R.id.servings);
-            mServings.setText(mList.get(position).getServings());
+            mServings    = v.findViewById(R.id.servings_info);
+            mServings.setText(Integer.toString(mList.get(position).getServings()));
 
-            mIngredients = v.findViewById(R.id.ingredients);
+            mIngredients = v.findViewById(R.id.ingredients_info);
             mIngredients.setText(mList.get(position).getIngredients());
 
-            mDirections  = v.findViewById(R.id.directions);
-            mDirections.setText(mList.get(position).getIngredients());
+            mDirections  = v.findViewById(R.id.directions_info);
+            mDirections.setText(mList.get(position).getDirections());
 
             return v;
         }
