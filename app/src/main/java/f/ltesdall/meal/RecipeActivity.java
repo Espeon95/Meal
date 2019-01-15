@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -96,13 +97,24 @@ public class RecipeActivity extends AppCompatActivity {
             mServings.setText(String.format(Locale.US, "%d", mList.get(position).getServings()));
 
             mIngredients = v.findViewById(R.id.ingredients_info);
-            mIngredients.setText(mList.get(position).getIngredients());
+            mIngredients.setText(parseData(mList.get(position).getIngredients()));
 
             mDirections  = v.findViewById(R.id.directions_info);
-            mDirections.setText(mList.get(position).getDirections());
+            mDirections.setText(parseData(mList.get(position).getDirections()));
 
             return v;
         }
     }
 
+    public String parseData(String directions) {
+        String[] parsedDirections = directions.split(",[ ]*");
+        String   newDirections = "";
+
+
+        for (int i = 0; i < parsedDirections.length; i++) {
+            newDirections += parsedDirections[i] + "\n";
+        }
+
+        return newDirections;
+    }
 }
