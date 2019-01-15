@@ -97,7 +97,7 @@ public class DBAccess {
         }
         c.close();
 
-        Collections.sort(list, new Comparator<Ingredient>() {
+        Collections.sort(list, new Comparator<Ingredient>(){
             public int compare(Ingredient obj1, Ingredient obj2) {
                 // ## Ascending order
                 return obj1.getName().compareToIgnoreCase(obj2.getName()); // To compare string values

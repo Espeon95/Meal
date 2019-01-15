@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public class Adapter extends BaseAdapter implements ListAdapter {
-        private List<Recipe>  mList = new ArrayList<>();
+        private List<Recipe>  mList;
         private Context mContext;
 
         public Adapter(List<Recipe> recipe, Context context) {
@@ -84,7 +85,7 @@ public class RecipeActivity extends AppCompatActivity {
             View v = convertView;
             if (v == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = inflater.inflate(R.layout.recipe_layout, null);
+                v = inflater.inflate(R.layout.recipe_layout, parent, false);
             }
 
             // Handle TextView and display string from your list
@@ -92,7 +93,7 @@ public class RecipeActivity extends AppCompatActivity {
             mTitle.setText(mList.get(position).getTitle());
 
             mServings    = v.findViewById(R.id.servings_info);
-            mServings.setText(Integer.toString(mList.get(position).getServings()));
+            mServings.setText(String.format(Locale.US, "%d", mList.get(position).getServings()));
 
             mIngredients = v.findViewById(R.id.ingredients_info);
             mIngredients.setText(mList.get(position).getIngredients());

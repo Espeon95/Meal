@@ -12,8 +12,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,11 +75,11 @@ public class MealListActivity extends AppCompatActivity {
             View v = convertView;
             if (v == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = inflater.inflate(R.layout.meal_layout, null);
+                v = inflater.inflate(R.layout.meal_layout, parent, false);
             }
 
             // Handle TextView and display string from your list
-            TextView meal = (TextView) v.findViewById(R.id.meal);
+            TextView meal = v.findViewById(R.id.meal);
             meal.setText(mList.get(position).getName());
 
             return v;
