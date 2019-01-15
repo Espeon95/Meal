@@ -40,7 +40,7 @@ public class MealListActivity extends AppCompatActivity {
         mMealList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + "is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), mMeals.get(position).getName() + " is selected", Toast.LENGTH_SHORT).show();
             }
         });
     }
