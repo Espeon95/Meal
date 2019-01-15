@@ -111,7 +111,7 @@ public class DBAccess {
         Meal m;
         List<Meal> list = new ArrayList<>();
 
-        c = db.rawQuery("select * from Meals", null);
+        c = db.rawQuery("select * from Recipes", null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             m = new Meal(c.getInt(0), c.getString(1));
@@ -138,7 +138,7 @@ public class DBAccess {
         c = db.rawQuery("select * from Recipes where Recipe_ID = ?", new String[] {mealID + ""});
         c.moveToFirst();
         while(!c.isAfterLast()) {
-            r = new Recipe(recipeName, c.getInt(1), c.getString(2), c.getString(3));
+            r = new Recipe(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getString(5));
             list.add(r);
             c.moveToNext();
         }

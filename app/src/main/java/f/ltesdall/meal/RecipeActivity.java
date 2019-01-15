@@ -105,7 +105,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public String parseData(String directions) {
-        String[] parsedDirections = directions.split(",[ ]*"); // splits at the comma and eliminates spaces
+        String[] parsedDirections = directions.split(";[ ]*"); // splits at the comma and eliminates spaces
         String   newDirections = "";
 
         for (int i = 0; i < parsedDirections.length; i++) {
