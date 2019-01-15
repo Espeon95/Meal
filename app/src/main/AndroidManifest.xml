@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".IngredientListActivity"></activity>
         <activity android:name=".MealListActivity"></activity>
-        <activity android:name="RecipeActivity"></activity>
+        <activity android:name=".RecipeActivity"></activity>
+        <activity android:name=".ShoppingListActivity"></activity>
     </application>
 
 </manifest>

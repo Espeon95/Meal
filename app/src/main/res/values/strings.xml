@@ -3,6 +3,7 @@
 
     <string name="ingredients_btn">Ingredients</string>
     <string name="meals_btn">Meals</string>
+    <string name="shoppingListBtn">Shopping List</string>
 
     <string name="add">+</string>
     <string name="delete">-</string>

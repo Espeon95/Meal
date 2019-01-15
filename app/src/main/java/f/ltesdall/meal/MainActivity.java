@@ -15,13 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mIngredientsBtn;
     private Button mMealsBtn;
+    private Button mShoppingListBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mIngredientsBtn = (Button) findViewById(R.id.ingredientsBtn);
+        mIngredientsBtn = findViewById(R.id.ingredientsBtn);
         mIngredientsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mMealsBtn = (Button) findViewById(R.id.mealsBtn);
+        mMealsBtn = findViewById(R.id.mealsBtn);
         mMealsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,5 +40,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mShoppingListBtn = findViewById(R.id.shoppingListBtn);
+        mShoppingListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ShoppingListActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
